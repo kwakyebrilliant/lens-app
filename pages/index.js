@@ -3,6 +3,7 @@ import {
   client, recommendProfiles
 } from '../api';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Home() {
   const [profiles, setProfiles] = useState([])
@@ -27,6 +28,19 @@ export default function Home() {
          <Link href={`/profile/${profile.id}`}>
           <a>
             <div>
+              {
+                profile.picture ? (
+                  <Image 
+                    src={profile.picture.original.url}
+                    width="60px"
+                    height="60px"
+                  />
+                ) : (
+                  <div
+                  style={{ width: '60px', height: '60px', backgroundColor: 'black' }}
+                  />
+                )
+              }
               <h4>{profile.handle}</h4>
               <p>{profile.bio}</p>
             </div>

@@ -1,5 +1,12 @@
 import { useRouter } from "next/router";
 
-export function profile() {
+export default function Profile() {
+    const router = useRouter()
+    const { id } = router.query
 
+    return (
+        <div>
+            {id}
+        </div>
+    )
 }

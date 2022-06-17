@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import { useState, useEffect } from 'react';
 import { client, getProfiles, getPublications } from "../../api";
 import Image from 'next/image';
+import { Contract, ethers } from "ethers";
 
 import ABI from '../../abi.json';
 const address  = "0xDb46d1Dc155634FbC732f92E853b10B288AD5a1d";
@@ -38,6 +39,27 @@ export default function Profile() {
         console.log({ accounts })
     }
 
+    async function followUser() {
+        const provider = new ethers.providers.Web3Provider(window.ethereum)
+        const signer = provider.getSigner()
+
+        const contract = new ethers.Contract(
+            address,
+            ABI,
+            signer
+        )
+
+        try {
+            const tx = contract.follow(
+                [id], [0x0]
+            )
+            await tx.await()
+            console.log("followed user successfully")
+        } catch (err) {
+            console.log({ err })
+        }
+    }
+
     if (!profile) return null
 
     return (
@@ -62,7 +84,9 @@ export default function Profile() {
                 <p>Followers: {profile.stats.totalFollowers}</p>
                 <p>Following: {profile.stats.totalFollowing}</p>
             </div>
-
+            <button onClick={followUser}>
+                Follow
+            </button>
             <div>
                 {
                     pubs.map((pub, index) => {

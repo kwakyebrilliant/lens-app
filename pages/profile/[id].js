@@ -50,7 +50,7 @@ export default function Profile() {
         )
 
         try {
-            const tx = contract.follow(
+            const tx = await contract.follow(
                 [id], [0x0]
             )
             await tx.await()

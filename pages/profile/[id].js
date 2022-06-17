@@ -3,6 +3,9 @@ import { useState, useEffect } from 'react';
 import { client, getProfiles, getPublications } from "../../api";
 import Image from 'next/image';
 
+import ABI from '../../abi.json';
+const address  = "0xDb46d1Dc155634FbC732f92E853b10B288AD5a1d";
+
 export default function Profile() {
     const [profile, setProfile] = useState()
     const [pubs, setPubs] = useState([])
@@ -28,12 +31,23 @@ export default function Profile() {
         }
     }
 
+    async function connect() {
+        const accounts = await window.ethereum.request({
+            method: "eth_requestAccounts"
+        })
+        console.log({ accounts })
+    }
+
     if (!profile) return null
 
     return (
         <div>
+            <button onClick={connect}>
+                Connect
+            </button>
             {
                 profile.picture ? (
+                    // eslint-disable-next-line jsx-a11y/alt-text
                     <Image 
                         width="200px"
                         height="200px"

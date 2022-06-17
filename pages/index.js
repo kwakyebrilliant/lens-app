@@ -30,6 +30,7 @@ export default function Home() {
             <div>
               {
                 profile.picture ? (
+                  // eslint-disable-next-line jsx-a11y/alt-text
                   <Image 
                     src={profile.picture.original.url}
                     width="60px"

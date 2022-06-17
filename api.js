@@ -32,12 +32,10 @@ query Publications($id: ProfileId!) {
     }
   }
 }
-
 fragment MediaFields on Media {
   url
   mimeType
 }
-
 fragment ProfileFields on Profile {
   id
   name
@@ -112,13 +110,11 @@ fragment ProfileFields on Profile {
     }
   }
 }
-
 fragment PublicationStatsFields on PublicationStats { 
   totalAmountOfMirrors
   totalAmountOfCollects
   totalAmountOfComments
 }
-
 fragment MetadataOutputFields on MetadataOutput {
   name
   description
@@ -134,14 +130,12 @@ fragment MetadataOutputFields on MetadataOutput {
     value
   }
 }
-
 fragment Erc20Fields on Erc20 {
   name
   symbol
   decimals
   address
 }
-
 fragment CollectModuleFields on CollectModule {
   __typename
   ... on FreeCollectModuleSettings {
@@ -201,7 +195,6 @@ fragment CollectModuleFields on CollectModule {
     endTimestamp
   }
 }
-
 fragment PostFields on Post {
   id
   profile {
@@ -224,7 +217,6 @@ fragment PostFields on Post {
   }
   appId
 }
-
 fragment MirrorBaseFields on Mirror {
   id
   profile {
@@ -247,7 +239,6 @@ fragment MirrorBaseFields on Mirror {
   }
   appId
 }
-
 fragment MirrorFields on Mirror {
   ...MirrorBaseFields
   mirrorOf {
@@ -259,7 +250,6 @@ fragment MirrorFields on Mirror {
    }
   }
 }
-
 fragment CommentBaseFields on Comment {
   id
   profile {
@@ -282,7 +272,6 @@ fragment CommentBaseFields on Comment {
   }
   appId
 }
-
 fragment CommentFields on Comment {
   ...CommentBaseFields
   mainPost {
@@ -302,7 +291,6 @@ fragment CommentFields on Comment {
     }
   }
 }
-
 fragment CommentMirrorOfFields on Comment {
   ...CommentBaseFields
   mainPost {
